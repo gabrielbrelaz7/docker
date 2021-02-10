@@ -29,7 +29,7 @@ sudo docker images
 sudo which docker
 
 //Para saber os containers em execução 
-docker container ls
+sudo docker container ls
 
 // Para rodar um container 
 sudo docker run -d -p [porta do sistema operacional]:[porta no docker] [nome]
@@ -64,5 +64,11 @@ sudo docker start [NOME_CONTAINER]
 //Para listar containers recem criando 
 sudo docker ps -a
 
-// Para rodar um container recem - criando 
-sudo docker run -p PORT_LOCAL:PORTA_HOST --name [NOME_DO_CONTAINER]
+// Para rodar um container recem-criado 
+sudo docker run -p PORT_LOCAL:PORTA_HOST --name [NOME_DO_CONTAINER] -d [IMAGEM]
+
+// Para mostrar as estatisticas de um container rodando 
+sudo docker stats
+
+// Para para um container
+sudo docker stop [NOME_DO_CONTAINER]
