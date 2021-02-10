@@ -1,0 +1,51 @@
+// Realizar um update dos repositórios do Linux 
+sudo apt-get update
+
+//Remover possíveis instalações do Docker que podem ter no computador
+sudo apt-get remove docker-engine docker.io
+
+//Instalando o docker
+sudo apt install docker.io
+
+//Iniciando o docker 
+sudo systemctl start docker
+
+//Verificar se o docker está ativo 
+sudo systemctl status docker
+
+//Caso queira iniciar automaticamente com o sistema operacional
+sudo systemctl enable docker
+
+//Verificar a instalação e versão do docker
+sudo docker --version
+
+//Testar container no docker
+sudo docker run hello-world
+
+//Para mostrar as imagens que tem localmente no computador
+sudo docker images
+
+//Para saber em qual diretório no Linux o docker se encontra
+sudo which docker
+
+//Para saber os containers em execução 
+docker container ls
+
+// Para rodar um container 
+sudo docker run -d -p [porta do sistema operacional]:[porta no docker] [nome]
+
+//Para retornar um id de um container 
+sudo docker ps -q
+
+//Para matar um container rodando no terminal
+sudo docker kill $(sudo docker ps -q)
+
+//Para logar no Docker Hub
+sudo docker login
+
+//Para inspecionar uma imagem 
+sudo docker image inspect [nome_da_imagem]
+
+//Para inspecionar um container
+sudo docker container inspect [container]
+
