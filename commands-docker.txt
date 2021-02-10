@@ -49,3 +49,20 @@ sudo docker image inspect [nome_da_imagem]
 //Para inspecionar um container
 sudo docker container inspect [container]
 
+// PAra rodar um docker file
+sudo docker build .
+
+// Para verificar o histórico de uma imagem docker 
+sudo docker image history
+
+// Para criar um container 
+sudo docker container create --name [NOME_CONTAINER] [NAME OR ID IMAGE]
+
+// Para abrir um container criado 
+sudo docker start [NOME_CONTAINER]
+
+//Para listar containers recem criando 
+sudo docker ps -a
+
+// Para rodar um container recem - criando 
+sudo docker run -p PORT_LOCAL:PORTA_HOST --name [NOME_DO_CONTAINER]
