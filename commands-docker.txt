@@ -72,3 +72,6 @@ sudo docker stats
 
 // Para para um container
 sudo docker stop [NOME_DO_CONTAINER]
+
+//Para limpar todos os containers que não estão em uso 
+sudo docker container prune
