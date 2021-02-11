@@ -10,7 +10,7 @@ sudo apt install docker.io
 //Iniciando o docker 
 sudo systemctl start docker
 
-//Verificar se o docker está ativo 
+//Verificar se o docker está ativo  
 sudo systemctl status docker
 
 //Caso queira iniciar automaticamente com o sistema operacional
@@ -64,16 +64,16 @@ sudo docker start [NOME_CONTAINER]
 //Para listar containers recem criando 
 sudo docker ps -a
 
-// Para rodar um container recem-criado 
+// Para rodar um container atrelado a uma imagem 
 sudo docker run -p PORT_LOCAL:PORTA_HOST --name [NOME_DO_CONTAINER] -d [IMAGEM]
 
 // Para mostrar as estatisticas de um container rodando 
 sudo docker stats
 
-// Para para um container
+// Para parar um container
 sudo docker stop [NOME_DO_CONTAINER]
 
-//Para limpar todos os containers que não estão em uso 
+//Para limpar todos os containers que não estão em uso c
 sudo docker container prune
 
 
@@ -85,3 +85,10 @@ sudo docker image rm [IMAGEM]
 
 // Para remover um container
 sudo docker container rm [CONTAINER]
+
+//Quando o localhost não quer rodar tente deletar algumas imagens antigas usando o comando abaixo 
+sudo docker image prune
+
+// Para deletar todas as imagens , container , cache do docker 
+sudo docker system prune
+
