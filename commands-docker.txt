@@ -75,3 +75,13 @@ sudo docker stop [NOME_DO_CONTAINER]
 
 //Para limpar todos os containers que não estão em uso 
 sudo docker container prune
+
+
+//Para criar um nome para tag de uma imagem 
+sudo docker image tag [ID_DA_IMAGEM] [NOME_PARA_TAG]
+
+// Para remover uma imagem
+sudo docker image rm [IMAGEM]
+
+// Para remover um container
+sudo docker container rm [CONTAINER]
