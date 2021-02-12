@@ -52,10 +52,14 @@ sudo chmod 775 'license.properties'
 sudo cq-quickstart-6.5.0.jar
 
 # Change username and group properties in the path
-sudo chown gabrielaraujo: 'crx-quickstart'
+sudo chown -R gabrielaraujo: 'crx-quickstart'
 
 # Change permissions in archive
-sudo chmod 775 'crx-quickstart'
+sudo chmod -R 775 'crx-quickstart'
+
+# Execute the .jar file
+sudo java -XX:MaxPermSize=2024m -Xmx2024M -jar cq-quickstart-6.5.0.jar -gui
+
 
 # Download all files the AEM Service Packs
 
@@ -67,9 +71,6 @@ sudo chown gabrielaraujo: 'AEM-6.5.1.0.zip'
 # Change permissions in archive
 sudo chmod 664 'AEM-6.5.1.0.zip'
 
-# Move the downloaded folder to specific path
-
-# Unzip the downloaded folder in path
 
 # Access the package manager 
 
@@ -79,44 +80,24 @@ sudo chmod 664 'AEM-6.5.1.0.zip'
 ########################################## Installing Maven
 
 # Check Maven Version and if existing one installation Maven in machine 
-mvn --v
 
 # Update and Installing Maven
 sudo apt update
 sudo apt install maven
 
 
-
 ########################################## Installing Node.JS
 
-# Check Node Version and if existing one installation Maven in operation system 
-node --version
-
-# Update and Installing Maven
+# Update and Installing Node
 sudo apt update
 sudo apt install nodejs
 
 
 ########################################## Installing NPM
 
-
-# Check NPM Version and if existing one installation NPM in operation system 
-node --version
-
 # Update and Installing NPM
 sudo apt update
-sudo apt install nodejs
-
-
-########################################## Installing NPM
-
-
-# Check NPM Version and if existing one installation NPM in operation system 
-node --version
-
-# Update and Installing NPM
-sudo apt update
-sudo apt install nodejs
+sudo apt install npm
 
 
 ########################################## Configuring Maven properties ( .m2)
