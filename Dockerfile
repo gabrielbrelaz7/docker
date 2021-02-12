@@ -7,30 +7,65 @@ ENV DEFAULT_JAVA_VERSION = "javac 11.0.10"
 ENV DEFAULT_NPM_VERSION = "6.14.10"
 ENV DEFAULT_MAVEN_VERSION = "Apache Maven 3.6.3"
 
+########################################## Move to root in the terminal
+
+sudo cd /
+
 
 ########################################## Check and installing JAVA 
 
-# Check Java Version and if existing one intallation JAVA in machine
-sudo javac -version
+# Check Java Version and if existing one installation JAVA 
+#sudo javac -version
 
-# If necessary, update JAVA for variable value DEFAUL_JAVA_VERSION
+# If necessary, update or install JAVA for variable value DEFAUL_JAVA_VERSION
 sudo apt-get install openjdk-11-jdk
 
+sudo apt install curl
+
+
+# Move the download diretory path
+cd /home/gabrielaraujo/Documentos
+
+# Make a new folder to specific path and enter it
+sudo mkdir "AEM Local Instance"
+
+# Change username and group properties in the path
+sudo chown gabrielaraujo: 'AEM Local Instance'
+
+# Enter in the path AEM Local Instance
+cd "AEM Local Instance"
 
 # Download the following files
-Cq-quickstart-6.5.0.jar
-License.properties
+sudo wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1CmCSTN-DmyfySf3ew5B3oVtIZAB6ZASs' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1CmCSTN-DmyfySf3ew5B3oVtIZAB6ZASs" -O cq-quickstart-6.5.0.jar && rm -rf /tmp/cookies.txt
+sudo wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1aYf16-nRmRk3TM24srhC0-DVJz4NUQeP' -O license.properties
 
-# Make a new folder to specific path
+# Change username and group properties in the path
+sudo chown gabrielaraujo: 'cq-quickstart-6.5.0.jar'
+sudo chown gabrielaraujo: 'license.properties'
 
-# Move the downloaded files into the new folder
+
+# Change permissions in archive
+sudo chmod 775 'cq-quickstart-6.5.0.jar'
+sudo chmod 775 'license.properties'
 
 # Execute the .jar file
+sudo cq-quickstart-6.5.0.jar
 
-# If the .jar file does not execute,  enable execution in properties> permissions
+# Change username and group properties in the path
+sudo chown gabrielaraujo: 'crx-quickstart'
 
+# Change permissions in archive
+sudo chmod 775 'crx-quickstart'
 
 # Download all files the AEM Service Packs
+
+sudo wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1dMir_9kThC8kvHDQdfPZyPsGXT41_rUm' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1dMir_9kThC8kvHDQdfPZyPsGXT41_rUm" -O AEM-6.5.1.0.zip && rm -rf /tmp/cookies.txt
+
+# Change username and group properties in the path
+sudo chown gabrielaraujo: 'AEM-6.5.1.0.zip'
+
+# Change permissions in archive
+sudo chmod 664 'AEM-6.5.1.0.zip'
 
 # Move the downloaded folder to specific path
 
@@ -141,6 +176,8 @@ mvn archetype:generate -B \
 
 
     ########################################## Open AEM Instance 
+
+
 
 
 
