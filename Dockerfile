@@ -88,8 +88,10 @@ sudo apt install maven
 
 ########################################## Installing Node.JS
 
-# Update and Installing Node
+# Updating
 sudo apt update
+
+#Installing Node
 sudo apt install nodejs
 
 
@@ -99,29 +101,43 @@ sudo apt install nodejs
 sudo apt update
 sudo apt install npm
 
-
 ########################################## Configuring Maven properties ( .m2)
 
-# Navigate to .m2 repository
-#$ cd /home/YOUR_USERNAME/.m2
+# Navigate to .m2 repository or create
+cd ../../
+sudo mkdir .m2
 
-# Check if the file settings.xml already exists in .m2 folder:
-# ls
+# Change username and group properties in the path
+sudo chown gabrielaraujo: .m2
 
-# if it doesn’t, create it with the command:
-$ touch settings.xml or $ code settings.xml 
+# Change permissions in archive
+sudo chmod 664 .m2
 
+# Enter 
+cd .m2
+
+# Delete older file settings.xml if exist
+sudo rm settings.xml
+
+# Download the file settings.xml
+sudo wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1Z4NcWiyCy4F2jHg30iIMiuiWq5AoqypT' -O settings.xml
+
+# Change username and group properties in the path
+sudo chown gabrielaraujo:settings.xml
+
+# Change permissions in archive
+sudo chmod 664 settings.xml
 
 #Run the command below to check if the adobe-public profile is active.
-$ mvn help:effective-settings
+sudo mvn help:effective-settings
 
 
 ########################################## Getting Started with AEM Sites 
 
 # Navigate to the folder you would like to create the project
+cd ../Documentos/
 
 # Then run the following command
-
 mvn archetype:generate -B \
     -DarchetypeGroupId=com.adobe.granite.archetypes \
     -DarchetypeArtifactId=aem-project-archetype \
@@ -148,6 +164,7 @@ mvn archetype:generate -B \
 
 
     # After creating your new project using Archetype, run AEM instance again by executing the .jar file
+
 
     # Navigate to the folder: aem-guides-wknd in the directory 
 
