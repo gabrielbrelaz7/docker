@@ -8,9 +8,7 @@ ENV DEFAULT_NPM_VERSION = "6.14.10"
 ENV DEFAULT_MAVEN_VERSION = "Apache Maven 3.6.3"
 
 ########################################## Move to root in the terminal
-
 sudo cd /
-
 
 ########################################## Check and installing JAVA 
 
@@ -19,9 +17,7 @@ sudo cd /
 
 # If necessary, update or install JAVA for variable value DEFAUL_JAVA_VERSION
 sudo apt-get install openjdk-11-jdk
-
 sudo apt install curl
-
 
 # Move the download diretory path
 cd /home/gabrielaraujo/Documentos
@@ -43,7 +39,6 @@ sudo wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=
 sudo chown gabrielaraujo: 'cq-quickstart-6.5.0.jar'
 sudo chown gabrielaraujo: 'license.properties'
 
-
 # Change permissions in archive
 sudo chmod 775 'cq-quickstart-6.5.0.jar'
 sudo chmod 775 'license.properties'
@@ -62,7 +57,6 @@ sudo java -XX:MaxPermSize=2024m -Xmx2024M -jar cq-quickstart-6.5.0.jar -gui
 
 
 # Download all files the AEM Service Packs
-
 sudo wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1dMir_9kThC8kvHDQdfPZyPsGXT41_rUm' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1dMir_9kThC8kvHDQdfPZyPsGXT41_rUm" -O AEM-6.5.1.0.zip && rm -rf /tmp/cookies.txt
 
 # Change username and group properties in the path
@@ -75,7 +69,6 @@ sudo chmod 664 'AEM-6.5.1.0.zip'
 # Access the package manager 
 
 # Upload Packages in the package manager 
-
 
 ########################################## Installing Maven
 
@@ -93,7 +86,6 @@ sudo apt update
 
 #Installing Node
 sudo apt install nodejs
-
 
 ########################################## Installing NPM
 
@@ -117,28 +109,28 @@ sudo chmod 664 .m2
 cd .m2
 
 # Delete older file settings.xml if exist
-sudo rm settings.xml
+    sudo rm settings.xml
 
 # Download the file settings.xml
-sudo wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1Z4NcWiyCy4F2jHg30iIMiuiWq5AoqypT' -O settings.xml
+s   udo wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1Z4NcWiyCy4F2jHg30iIMiuiWq5AoqypT' -O settings.xml
 
 # Change username and group properties in the path
-sudo chown gabrielaraujo:settings.xml
+    sudo chown gabrielaraujo:settings.xml
 
 # Change permissions in archive
-sudo chmod 664 settings.xml
+    sudo chmod 664 settings.xml
 
 #Run the command below to check if the adobe-public profile is active.
-sudo mvn help:effective-settings
+    sudo mvn help:effective-settings
 
 
 ########################################## Getting Started with AEM Sites 
 
 # Navigate to the folder you would like to create the project
-cd ../Documentos/
+    cd ../Documentos/
 
 # Then run the following command
-mvn archetype:generate -B \
+    mvn archetype:generate -B \
     -DarchetypeGroupId=com.adobe.granite.archetypes \
     -DarchetypeArtifactId=aem-project-archetype \
     -DarchetypeVersion=22 \
@@ -162,35 +154,17 @@ mvn archetype:generate -B \
     -DpackageGroup=wknd \
     -DsiteName="WKND Site"
 
+# After creating your new project using Archetype, run AEM instance again by executing the .jar file
+    sudo java -XX:MaxPermSize=2024m -Xmx2024M -jar cq-quickstart-6.5.0.jar -gui
 
-    # After creating your new project using Archetype, run AEM instance again by executing the .jar file
+# Navigate to the folder: aem-guides-wknd in the directory 
+    cd aem-guides-wknd
 
-
-    # Navigate to the folder: aem-guides-wknd in the directory 
-
-    # Execute the following command
-
-    $ mvn -PautoInstallSinglePackage clean install
-
-
-    ########################################## Open AEM Instance 
-
-
-
-
-
-
-
-# The command RUN allow to run any script type bash or shell
-RUN echo "This is text example with variable $DEFAULT_JAVA_VERSION"
+# Execute the following command
+    sudo mvn -PautoInstallSinglePackage clean install
 
 # We can expose ports too, theses ports will can to be linked with others ports of host
-EXPOSE 8080
+    EXPOSE 8080
 
 # CMD is requirement, is the last command to be run when one container is created or restarted
-CMD ["echo", "${MINIMUN_MEMORY_RAM}"]
-
-
-
-
-
+    CMD ["", ""]
