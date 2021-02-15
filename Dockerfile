@@ -1,11 +1,11 @@
 FROM ubuntu:20.04
 
 ########################################## Enviroments variables declarations 
-ENV MINIMUN_MEMORY_RAM = "15985860"
-ENV DEFAULT_NODE_VERSION = "v10.23.2"
-ENV DEFAULT_JAVA_VERSION = "javac 11.0.10"
-ENV DEFAULT_NPM_VERSION = "6.14.10"
-ENV DEFAULT_MAVEN_VERSION = "Apache Maven 3.6.3"
+#ENV MINIMUN_MEMORY_RAM = "15985860"
+#ENV DEFAULT_NODE_VERSION = "v10.23.2"
+#ENV DEFAULT_JAVA_VERSION = "javac 11.0.10"
+#ENV DEFAULT_NPM_VERSION = "6.14.10"
+#ENV DEFAULT_MAVEN_VERSION = "Apache Maven 3.6.3"
 
 ########################################## Move to root in the terminal
 sudo cd /
@@ -26,7 +26,7 @@ cd /home/gabrielaraujo/Documentos
 sudo mkdir "AEM Local Instance"
 
 # Change username and group properties in the path
-sudo chown gabrielaraujo: 'AEM Local Instance'
+sudo chown $USER: 'AEM Local Instance'
 
 # Enter in the path AEM Local Instance
 cd "AEM Local Instance"
@@ -36,8 +36,8 @@ sudo wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=dow
 sudo wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1aYf16-nRmRk3TM24srhC0-DVJz4NUQeP' -O license.properties
 
 # Change username and group properties in the path
-sudo chown gabrielaraujo: 'cq-quickstart-6.5.0.jar'
-sudo chown gabrielaraujo: 'license.properties'
+sudo chown $USER: 'cq-quickstart-6.5.0.jar'
+sudo chown $USER: 'license.properties'
 
 # Change permissions in archive
 sudo chmod 775 'cq-quickstart-6.5.0.jar'
@@ -55,12 +55,11 @@ sudo chmod -R 775 'crx-quickstart'
 # Execute the .jar file
 sudo java -XX:MaxPermSize=2024m -Xmx2024M -jar cq-quickstart-6.5.0.jar -gui
 
-
 # Download all files the AEM Service Packs
 sudo wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1dMir_9kThC8kvHDQdfPZyPsGXT41_rUm' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1dMir_9kThC8kvHDQdfPZyPsGXT41_rUm" -O AEM-6.5.1.0.zip && rm -rf /tmp/cookies.txt
 
 # Change username and group properties in the path
-sudo chown gabrielaraujo: 'AEM-6.5.1.0.zip'
+sudo chown $USER: 'AEM-6.5.1.0.zip'
 
 # Change permissions in archive
 sudo chmod 664 'AEM-6.5.1.0.zip'
@@ -77,7 +76,6 @@ sudo chmod 664 'AEM-6.5.1.0.zip'
 # Update and Installing Maven
 sudo apt update
 sudo apt install maven
-
 
 ########################################## Installing Node.JS
 
@@ -100,7 +98,7 @@ cd ../../
 sudo mkdir .m2
 
 # Change username and group properties in the path
-sudo chown gabrielaraujo: .m2
+sudo chown $USER: .m2
 
 # Change permissions in archive
 sudo chmod 664 .m2
@@ -109,25 +107,25 @@ sudo chmod 664 .m2
 cd .m2
 
 # Delete older file settings.xml if exist
-    sudo rm settings.xml
+sudo rm settings.xml
 
 # Download the file settings.xml
-s   udo wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1Z4NcWiyCy4F2jHg30iIMiuiWq5AoqypT' -O settings.xml
+sudo wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1Z4NcWiyCy4F2jHg30iIMiuiWq5AoqypT' -O settings.xml
 
 # Change username and group properties in the path
-    sudo chown gabrielaraujo:settings.xml
+sudo chown $USER:settings.xml
 
 # Change permissions in archive
-    sudo chmod 664 settings.xml
+sudo chmod 664 settings.xml
 
 #Run the command below to check if the adobe-public profile is active.
-    sudo mvn help:effective-settings
+sudo mvn help:effective-settings
 
 
 ########################################## Getting Started with AEM Sites 
 
 # Navigate to the folder you would like to create the project
-    cd ../Documentos/
+cd ../Documentos/
 
 # Then run the following command
     mvn archetype:generate -B \
@@ -155,16 +153,16 @@ s   udo wget --no-check-certificate 'https://docs.google.com/uc?export=download&
     -DsiteName="WKND Site"
 
 # After creating your new project using Archetype, run AEM instance again by executing the .jar file
-    sudo java -XX:MaxPermSize=2024m -Xmx2024M -jar cq-quickstart-6.5.0.jar -gui
+sudo java -XX:MaxPermSize=2024m -Xmx2024M -jar cq-quickstart-6.5.0.jar -gui
 
 # Navigate to the folder: aem-guides-wknd in the directory 
-    cd aem-guides-wknd
+cd aem-guides-wknd
 
 # Execute the following command
-    sudo mvn -PautoInstallSinglePackage clean install
+sudo mvn -PautoInstallSinglePackage clean install
 
 # We can expose ports too, theses ports will can to be linked with others ports of host
-    EXPOSE 8080
+EXPOSE 8080
 
 # CMD is requirement, is the last command to be run when one container is created or restarted
-    CMD ["", ""]
+CMD ["Você", "deve", "fazer", "uploads", "de", "todos", "services","packs", "dentro", "do", "CRX", "do", "Adobe Experience Manager"]
