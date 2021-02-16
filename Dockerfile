@@ -7,17 +7,14 @@ FROM ubuntu:20.04
 #ENV DEFAULT_NPM_VERSION = "6.14.10"
 #ENV DEFAULT_MAVEN_VERSION = "Apache Maven 3.6.3"
 
-########################################## Move to root in the terminal
-
-
 ########################################## Check and installing JAVA 
 
 # Check Java Version and if existing one installation JAVA 
 #sudo javac -version
 
 # If necessary, update or install JAVA for variable value DEFAUL_JAVA_VERSION
-RUN sudo cd / && sudo apt-get install openjdk-11-jdk 
-RUN sudo cd / &&sudo apt install curl
+RUN cd / && sudo apt-get install openjdk-11-jdk 
+RUN cd / && sudo apt install curl
 
 # Move the download diretory path 
 # && Make a new folder to specific path and enter it
@@ -27,24 +24,35 @@ RUN cd $HOME/Documentos && sudo mkdir "AEM Local Instance" && sudo chown $USER: 
 
 # Download the following file
 # Change username and group properties in the path
-RUN sudo wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1CmCSTN-DmyfySf3ew5B3oVtIZAB6ZASs' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1CmCSTN-DmyfySf3ew5B3oVtIZAB6ZASs" -O cq-quickstart-6.5.0.jar && rm -rf /tmp/cookies.txt && sudo chown $USER: 'cq-quickstart-6.5.0.jar'
+RUN sudo wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1CmCSTN-DmyfySf3ew5B3oVtIZAB6ZASs' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1CmCSTN-DmyfySf3ew5B3oVtIZAB6ZASs" -O cq-quickstart-6.5.0.jar && rm -rf /tmp/cookies.txt && sudo chown -R $USER: 'cq-quickstart-6.5.0.jar' && sudo chmod -R 775 'cq-quickstart-6.5.0.jar'
 
 # Download the following file
 # Change username and group properties in the path
-RUN sudo wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1aYf16-nRmRk3TM24srhC0-DVJz4NUQeP' -O license.properties && sudo chown $USER: 'license.properties'
+RUN sudo wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1aYf16-nRmRk3TM24srhC0-DVJz4NUQeP' -O license.properties && sudo chown $USER: 'license.properties' && sudo chmod -R 775 'license.properties'
 
 # Change username and group properties in the path
 # Change permissions in archive
 # Execute the .jar file
-RUN sudo chown -R gabrielaraujo: 'crx-quickstart' && sudo chmod -R 775 'crx-quickstart' && sudo cq-quickstart-6.5.0.jar
+# User: admin
+# Password: admin
+RUN sudo nohup java -jar cq-quickstart-6.5.0.jar & && 
 
-# Execute the .jar file
-RUN sudo java -XX:MaxPermSize=2024m -Xmx2024M -jar cq-quickstart-6.5.0.jar -gui
+
+# Change username and group properties in the path
+# Change permissions in archive
+RUN sudo rm nohup.out && sudo chown -R $USER: 'crx-quickstart' && sudo chmod -R 775 'crx-quickstart'
+
 
 # Download all files the AEM Service Packs
 # Change username and group properties in the path
 # Change permissions in archive
 RUN sudo wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1dMir_9kThC8kvHDQdfPZyPsGXT41_rUm' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1dMir_9kThC8kvHDQdfPZyPsGXT41_rUm" -O AEM-6.5.1.0.zip && rm -rf /tmp/cookies.txt && sudo chown $USER: 'AEM-6.5.1.0.zip' && sudo chmod 664 'AEM-6.5.1.0.zip'
+RUN sudo wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1wmUHqcfLOddF-vo-AmsydOawTiECJQ4w' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1wmUHqcfLOddF-vo-AmsydOawTiECJQ4w" -O AEM-6.5.2.0.zip && rm -rf /tmp/cookies.txt && sudo chown $USER: 'AEM-6.5.2.0.zip' && sudo chmod 664 'AEM-6.5.2.0.zip'
+RUN sudo wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=11nPxtLhxdVysLi2u82zRyogq0vq93gmD' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=11nPxtLhxdVysLi2u82zRyogq0vq93gmD" -O aem-service-pkg-6.5.3.zip && rm -rf /tmp/cookies.txt && sudo chown $USER: 'aem-service-pkg-6.5.3.zip' && sudo chmod 664 'aem-service-pkg-6.5.3.zip'
+RUN sudo wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1Tg6HMCD56aNIl4o11rByI0FjMBO1LO8t' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1Tg6HMCD56aNIl4o11rByI0FjMBO1LO8t" -O aem-service-pkg-6.5.4.zip && rm -rf /tmp/cookies.txt && sudo chown $USER: 'aem-service-pkg-6.5.4.zip' && sudo chmod 664 'aem-service-pkg-6.5.4.zip'
+RUN sudo wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1c_84WG6cMwUGkfob25z3Jal6zxQcqD8P' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1c_84WG6cMwUGkfob25z3Jal6zxQcqD8P" -O aem-service-pkg-6.5.5.zip && rm -rf /tmp/cookies.txt && sudo chown $USER: 'aem-service-pkg-6.5.5.zip' && sudo chmod 664 'aem-service-pkg-6.5.5.zip'
+RUN sudo wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1_2T5YFiCij0EwlGyAtnTVTMw1IysUSXO' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1_2T5YFiCij0EwlGyAtnTVTMw1IysUSXO" -O aem-service-pkg-6.5.6-1.0.zip && rm -rf /tmp/cookies.txt && sudo chown $USER: 'aem-service-pkg-6.5.6-1.0.zip' && sudo chmod 664 'aem-service-pkg-6.5.6-1.0.zip'
+
 
 # Access the package manager 
 
@@ -81,7 +89,7 @@ RUN cd ../../ && sudo mkdir .m2 && sudo chown $USER: .m2 && sudo chmod 664 .m2 &
 # Download the file settings.xml
 # Change username and group properties in the path
 # Change permissions in archive
-RUN sudo wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1Z4NcWiyCy4F2jHg30iIMiuiWq5AoqypT' -O settings.xml && sudo chown $USER:settings.xml && sudo chmod 664 settings.xml
+RUN cd .m2 & sudo wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1Z4NcWiyCy4F2jHg30iIMiuiWq5AoqypT' -O settings.xml && sudo chown $USER: 'settings.xml' && sudo chmod 664 'settings.xml'
 
 #Run the command below to check if the adobe-public profile is active.
 RUN sudo mvn help:effective-settings
@@ -92,7 +100,7 @@ RUN sudo mvn help:effective-settings
 # Navigate to the folder you would like to create the project
 # Then run the following command
 
-RUN cd ../Documentos/ && mvn archetype:generate -B \
+RUN cd /$HOME/Documentos/'AEM Local Instance' && mvn archetype:generate -B \
     -DarchetypeGroupId=com.adobe.granite.archetypes \
     -DarchetypeArtifactId=aem-project-archetype \
     -DarchetypeVersion=22 \
@@ -117,11 +125,11 @@ RUN cd ../Documentos/ && mvn archetype:generate -B \
     -DsiteName="WKND Site"
 
 # After creating your new project using Archetype, run AEM instance again by executing the .jar file
-RUN sudo java -XX:MaxPermSize=2024m -Xmx2024M -jar cq-quickstart-6.5.0.jar -gui
+RUN sudo nohup java -XX:MaxPermSize=2024m -Xmx2024M -jar cq-quickstart-6.5.0.jar &
 
 # Navigate to the folder: aem-guides-wknd in the directory 
 # Execute the following command
-RUN cd aem-guides-wknd && sudo mvn -PautoInstallSinglePackage clean install
+RUN sudo rm nohup.out && cd aem-guides-wknd && sudo mvn -PautoInstallSinglePackage clean install
 
 # We can expose ports too, theses ports will can to be linked with others ports of host
 EXPOSE 8080
