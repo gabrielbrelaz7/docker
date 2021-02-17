@@ -129,7 +129,7 @@ RUN  nohup java -XX:MaxPermSize=2024m -Xmx2024M -jar cq-quickstart-6.5.0.jar &
 
 # Navigate to the folder: aem-guides-wknd in the directory 
 # Execute the following command
-RUN  rm nohup.out && cd aem-guides-wknd &&  mvn -PautoInstallSinglePackage clean install
+#RUN  rm nohup.out && cd aem-guides-wknd &&  mvn -PautoInstallSinglePackage clean install
 
 # We can expose ports too, theses ports will can to be linked with others ports of host
 EXPOSE 8080
